@@ -1,4 +1,4 @@
-package com.example.exercise_retrofit.good
+package com.example.exercise_retrofit.domains.good
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

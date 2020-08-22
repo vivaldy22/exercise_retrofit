@@ -1,6 +1,7 @@
-package com.example.exercise_retrofit.good
+package com.example.exercise_retrofit.domains.good
 
 import androidx.lifecycle.MutableLiveData
+import com.example.exercise_retrofit.domains.response_data.ResponseData
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
