@@ -21,5 +21,10 @@
         android:id="@+id/goodAddFragment"
         android:name="com.example.exercise_retrofit.domains.good.screen.GoodAddFragment"
         android:label="fragment_good_add"
-        tools:layout="@layout/fragment_good_add" />
+        tools:layout="@layout/fragment_good_add" >
+        <action
+            android:id="@+id/action_goodAddFragment_pop"
+            app:popUpTo="@id/goodAddFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

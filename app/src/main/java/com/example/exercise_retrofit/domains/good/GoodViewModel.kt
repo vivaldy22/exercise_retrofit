@@ -20,6 +20,6 @@ class GoodViewModel : ViewModel() {
     }
 
     fun createGood(good: Good) {
-        goodRepository.saveGood(good)
+        goodRepository.createGood(good)
     }
 }

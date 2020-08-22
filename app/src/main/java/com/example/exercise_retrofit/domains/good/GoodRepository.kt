@@ -15,25 +15,35 @@ class GoodRepository(val goodAPI: GoodAPI) {
         goodAPI.getGoodsByID(id).enqueue(object : Callback<ResponseData> {
             override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
                 val responseData = response.body()
-                val res = responseData?.result
-                val gson = Gson()
-                good.value = gson.fromJson(gson.toJson(res), Good::class.java)
+
+                if (responseData?.status == "OK") {
+                    val res = responseData.result
+                    val gson = Gson()
+                    good.value = gson.fromJson(gson.toJson(res), Good::class.java)
+                } else {
+                    good.value = Good("", "Data not found", "")
+//                    println("[ERROR] Data not found")
+                }
             }
 
             override fun onFailure(call: Call<ResponseData>, t: Throwable) {
-                println(t.localizedMessage)
+                t.printStackTrace()
             }
         })
     }
 
-    fun saveGood(good: Good) {
-        goodAPI.saveGood(good).enqueue(object : Callback<ResponseData> {
+    fun createGood(good: Good) {
+        goodAPI.createGood(good).enqueue(object : Callback<ResponseData> {
             override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
-                println("BERHASIL $good")
+                val responseData = response.body()
+
+                if (responseData?.status == "OK") {
+
+                }
             }
 
             override fun onFailure(call: Call<ResponseData>, t: Throwable) {
-                println(t.localizedMessage)
+                t.printStackTrace()
             }
 
         })
