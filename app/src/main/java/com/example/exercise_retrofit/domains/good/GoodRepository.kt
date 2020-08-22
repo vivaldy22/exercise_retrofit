@@ -26,4 +26,17 @@ class GoodRepository(val goodAPI: GoodAPI) {
         })
     }
 
+    fun saveGood(good: Good) {
+        goodAPI.saveGood(good).enqueue(object : Callback<ResponseData> {
+            override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
+                println("BERHASIL $good")
+            }
+
+            override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                println(t.localizedMessage)
+            }
+
+        })
+    }
+
 }

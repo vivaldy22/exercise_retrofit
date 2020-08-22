@@ -6,7 +6,7 @@ import com.example.exercise_retrofit.config.RetrofitBuilder
 
 class GoodViewModel : ViewModel() {
 
-    val goodRepository: GoodRepository
+    private val goodRepository: GoodRepository
 
     init {
         val goodsAPI = RetrofitBuilder.createRetrofit().create(GoodAPI::class.java)
@@ -17,5 +17,9 @@ class GoodViewModel : ViewModel() {
 
     fun getGoodByID(id: String) {
         goodRepository.getGoodByID(id)
+    }
+
+    fun createGood(good: Good) {
+        goodRepository.saveGood(good)
     }
 }
