@@ -4,14 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.exercise_retrofit.config.RetrofitBuilder
 
-class GoodViewModel : ViewModel() {
+class GoodViewModel(private val goodRepository: GoodRepository) : ViewModel() {
 
-    private val goodRepository: GoodRepository
-
-    init {
-        val goodsAPI = RetrofitBuilder.createRetrofit().create(GoodAPI::class.java)
-        goodRepository = GoodRepository(goodsAPI)
-    }
+//    init {
+//        val goodsAPI = RetrofitBuilder.createRetrofit().create(GoodAPI::class.java)
+//        goodRepository = GoodRepository(goodsAPI)
+//    }
 
     val good: LiveData<Good> = goodRepository.good
 
