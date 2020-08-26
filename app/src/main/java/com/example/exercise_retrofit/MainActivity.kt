@@ -5,17 +5,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.example.exercise_retrofit.domains.good.GoodViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var navController: NavController
+//    @Inject lateinit var goodViewModel: GoodViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val appContainer = (application as MyApplication).appContainer
+        (applicationContext as MyApplication).applicationComponent.inject(this)
 
         navController = (nav_main_host_fragment_container as NavHostFragment).navController
         NavigationUI.setupWithNavController(bottom_navigation, navController)

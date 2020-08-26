@@ -10,20 +10,20 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.exercise_retrofit.AppContainer
+import com.example.exercise_retrofit.MainActivity
 import com.example.exercise_retrofit.MyApplication
 import com.example.exercise_retrofit.R
 import com.example.exercise_retrofit.domains.good.GoodViewModel
 import kotlinx.android.synthetic.main.fragment_good.*
+import javax.inject.Inject
 
 class GoodFragment : Fragment(), View.OnClickListener {
 
-    lateinit var appContainer: AppContainer
-//    private val goodViewModel by activityViewModels<GoodViewModel>()
+    @Inject lateinit var goodViewModel: GoodViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        appContainer = (activity?.application as MyApplication).appContainer
+        (activity?.applicationContext as MyApplication).applicationComponent.inject(this)
     }
 
     override fun onCreateView(
@@ -36,7 +36,7 @@ class GoodFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        appContainer.goodViewModel.good.observe(viewLifecycleOwner, Observer {
+        goodViewModel.good.observe(viewLifecycleOwner, Observer {
             goodNameText.text = it.name
         })
         fetchButton.setOnClickListener(this)
@@ -49,6 +49,6 @@ class GoodFragment : Fragment(), View.OnClickListener {
     }
 
     private fun getGoodByID() {
-        appContainer.goodViewModel.getGoodByID(goodIDInputText.text.toString())
+        goodViewModel.getGoodByID(goodIDInputText.text.toString())
     }
 }

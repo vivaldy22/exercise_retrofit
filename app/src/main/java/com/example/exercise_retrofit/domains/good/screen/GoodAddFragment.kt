@@ -7,14 +7,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import com.example.exercise_retrofit.MainActivity
+import com.example.exercise_retrofit.MyApplication
 import com.example.exercise_retrofit.R
 import com.example.exercise_retrofit.domains.good.Good
 import com.example.exercise_retrofit.domains.good.GoodViewModel
 import kotlinx.android.synthetic.main.fragment_good_add.*
+import javax.inject.Inject
 
 class GoodAddFragment : Fragment() {
 
-    private val goodViewModel by activityViewModels<GoodViewModel>()
+    @Inject lateinit var goodViewModel: GoodViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity?.applicationContext as MyApplication).applicationComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

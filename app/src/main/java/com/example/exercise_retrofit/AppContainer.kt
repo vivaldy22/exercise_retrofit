@@ -8,9 +8,9 @@ import com.example.exercise_retrofit.domains.warehouse.WarehouseViewModel
 
 class AppContainer {
 
-    private val goodAPI: GoodAPI = RetrofitBuilder.createRetrofit().create(GoodAPI::class.java)
-    private val goodRepository = GoodRepository(goodAPI)
-    val goodViewModel = GoodViewModel(goodRepository)
+//    private val goodAPI: GoodAPI = RetrofitBuilder.createRetrofit().create(GoodAPI::class.java)
+//    private val goodRepository = GoodRepository(goodAPI)
+//    val goodViewModel = GoodViewModel(goodRepository)
 //    val goodViewModelFactory = GoodViewModelFactory(goodRepository)
 }
 
